@@ -41,27 +41,27 @@ dim(GSE176078_malignant_UMI_countmatrix)
 GSE176078_malignant_UMI_countmatrix[1:6, 1:6]
 ```
 
-    ##        CID3586_TTCTCCTTCTGAAAGA CID3586_AACCATGGTTCAGGCC
-    ## MALAT1                        0                       66
-    ## MT-CO2                        0                       28
-    ## MT-CO1                        0                       40
-    ## MT-CO3                        0                       16
-    ## RPLP1                        57                       86
-    ## FTH1                         11                       42
-    ##        CID3586_AACCGCGAGCGATGAC CID3586_AAGGAGCCATCTGGTA
-    ## MALAT1                       88                       35
-    ## MT-CO2                        0                        5
-    ## MT-CO1                       10                        2
-    ## MT-CO3                        3                        1
-    ## RPLP1                        10                        7
-    ## FTH1                          2                       10
-    ##        CID3586_AAGGCAGAGATCCGAG CID3586_AAGTCTGAGCCAACAG
-    ## MALAT1                       68                       89
-    ## MT-CO2                       13                       27
-    ## MT-CO1                       14                       22
-    ## MT-CO3                        8                       10
-    ## RPLP1                        53                       51
-    ## FTH1                         26                       73
+    ##          CID3586_TTCTCCTTCTGAAAGA CID3586_AACCATGGTTCAGGCC
+    ## A1BG                            0                        0
+    ## A1BG-AS1                        0                        0
+    ## A1CF                            0                        0
+    ## A2M                             0                        3
+    ## A2M-AS1                         0                        0
+    ## A2ML1                           0                        0
+    ##          CID3586_AACCGCGAGCGATGAC CID3586_AAGGAGCCATCTGGTA
+    ## A1BG                            0                        0
+    ## A1BG-AS1                        0                        1
+    ## A1CF                            0                        0
+    ## A2M                             0                        4
+    ## A2M-AS1                         0                        0
+    ## A2ML1                           0                        0
+    ##          CID3586_AAGGCAGAGATCCGAG CID3586_AAGTCTGAGCCAACAG
+    ## A1BG                            0                        0
+    ## A1BG-AS1                        1                        0
+    ## A1CF                            0                        0
+    ## A2M                             2                        0
+    ## A2M-AS1                         0                        0
+    ## A2ML1                           0                        0
 
 ``` {.r}
 table(GSE176078_malignant_metadata$Patient)
@@ -116,7 +116,7 @@ table(seu1@meta.data$IBRIDGE_Class)
 
     ## 
     ##       Cold   Inflamed Unassigned 
-    ##       8539       8540      10836
+    ##       8498       8497      10920
 
 We can then visualize these classes on the UMAP dimensions:
 

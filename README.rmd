@@ -29,7 +29,7 @@ Load necessary packages, the geneXcell count matrix and the patient metadata for
 ``` {r load_data1, echo=FALSE, eval=TRUE}
 load("../../GSE176078_malignant_UMI_countmatrix.rda")
 load("../../GSE176078_malignant_metadata.rda")
-GSE176078_malignant_UMI_countmatrix<-GSE176078_malignant_UMI_countmatrix[order(apply(GSE176078_malignant_UMI_countmatrix, 1, median), decreasing=TRUE),]
+GSE176078_malignant_UMI_countmatrix<-GSE176078_malignant_UMI_countmatrix[order(rownames(GSE176078_malignant_UMI_countmatrix)),]
 ```
 
 ``` {r load_data2, echo=TRUE, eval=FALSE}
