@@ -1,12 +1,13 @@
 Package: IBRIDGE
-Title: What the Package Does (One Line, Title Case)
+Title: IBRIDGE integrates bulk and single-cell datasets to profile granular heterogeneity of TIME, acting as a 'bridge' between data types.
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+Authors@R: person(given="Tolga", family="Turan", email="tolga.turan@abbvie.com", role = c("aut", "cre"))
+Description: The development of immune checkpoint-based therapies has been a major advancement in the treatment of cancer with a subset of patients exhibiting dramatic and durable responses across a variety of tumor types. A predictive biomarker for the immunotherapy response is the pre-existing T cell infiltration in the tumor immune microenvironment (TIME). Bulk transcriptomics-based approaches can crudely and indirectly quantify the level of T-cell infiltration using metagenes/deconvolution methods, and therefore can differentiate inflamed and immunologically cold tumors. However, these bulk techniques are unable to identify biomarkers of individual cell types in the TIME. More recently, single-cell RNA sequencing (scRNAseq) based assays have been used to profile a granular account of the TIME. To our knowledge there is no method of identifying patients with T-cell inflamed TIME using both scRNAseq and bulk transcriptomics data. Here, we demonstrate a method, called ‘Identifying Biological Relationships In Dark matter of Genomics Entities’ (I-BRIDGE), which integrates TCGA bulk RNA-seq data with the malignant/epithelial portion of scRNAseq data to identify patients with T-cell inflamed TIME. Using this method, we report the markers of inflamed phenotypes in malignant cells, myeloid cells and fibroblasts. Thus, we identify Type I and Type II interferon pathways as dominant signals, especially in malignant and myeloid cells. This contrasts with the immune cell metagenes as the main markers of inflamed cancers identified in bulk datasets. These cell-type specific markers potentially include causative targetable genes that can transform a cold TIME to an inflamed one when modulated. In addition, I-BRIDGE can be applied to in vitro grown cancer cell lines and can identify the cell lines that are likely to be adapted from inflamed/cold patient tumors.
+License: `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Depends: 
+    R (>= 2.10)
+LazyData: true
