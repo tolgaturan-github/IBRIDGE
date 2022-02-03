@@ -9,7 +9,7 @@ Quantification of T cell infiltration levels in a tumor tissue, is an important 
 
 ## INSTALLATION:
 
-Install IBRIDGE and the packges it depends as follows:
+Install IBRIDGE and the packages it depends as follows:
 
 ``` {.r}
 library(devtools)
