@@ -39,7 +39,7 @@ IBRIDGE_overlaps<-function(seu1, type="ens", cohort=c("ACC", "BLCA", "CESC", "CH
         stop("Normalization method is invalid! Please use 'SCTransform' or 'NormalizeData'") 
     }
     if (length(bulk_features[[1]]) == 0) {
-	warn("No overlapped inflamed gene signature found")
+	warning("No overlapped inflamed gene signature found")
  	inflamed_top100 <- c()
     } else {
     	inflamed.mean <- Matrix::rowMeans(data[bulk_features[[1]],])
@@ -47,7 +47,7 @@ IBRIDGE_overlaps<-function(seu1, type="ens", cohort=c("ACC", "BLCA", "CESC", "CH
     }
 
     if (length(bulk_features[[2]]) == 0) {
-	warn("No overlapped cold gene signature found")
+	warning("No overlapped cold gene signature found")
 	cold_top100 <- c()
     } else {
     	cold.mean <- Matrix::rowMeans(data[bulk_features[[2]],])
