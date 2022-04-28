@@ -37,10 +37,21 @@ IBRIDGE_overlaps<-function(seu1, type="ens", cohort=c("ACC", "BLCA", "CESC", "CH
     } else {
         stop("Normalization method is invalid! Please use 'SCTransform' or 'NormalizeData'") 
     }
-    inflamed.mean <- rowMeans(data[bulk_features[[1]],])
-    inflamed_top100 <- bulk_features[[1]][order(inflamed.mean, decreasing = T)][1:100]
-    cold.mean <- rowMeans(data[bulk_features[[2]],])
-    cold_top100 <- bulk_features[[2]][order(cold.mean, decreasing = T)][1:100]
+    if (length(bulk_features[[1]]) == 0) {
+	warn("No overlapped inflamed gene signature found")
+ 	inflamed_top100 <- c()
+    } else {
+    	inflamed.mean <- rowMeans(data[bulk_features[[1]],])
+    	inflamed_top100 <- bulk_features[[1]][order(inflamed.mean, decreasing = T)][1:100]
+    }
+
+    if (length(bulk_features[[2]]) == 0) {
+	warn("No overlapped cold gene signature found")
+	cold_top100 <- c()
+    } else {
+    	cold.mean <- rowMeans(data[bulk_features[[2]],])
+    	cold_top100 <- bulk_features[[2]][order(cold.mean, decreasing = T)][1:100]
+    }
     IBRIDGE_features<-list(inflamed=inflamed_top100, cold=cold_top100)
     return(IBRIDGE_features)
 }
