@@ -11,6 +11,7 @@
 #' @examples
 #' IBRIDGE_features<-IBRIDGE_overlaps(seu1, "LUAD", "SCTransform")
 #' @import AUCell
+#' @import Matrix
 #' @export
 #'
 
@@ -41,16 +42,16 @@ IBRIDGE_overlaps<-function(seu1, type="ens", cohort=c("ACC", "BLCA", "CESC", "CH
 	warn("No overlapped inflamed gene signature found")
  	inflamed_top100 <- c()
     } else {
-    	inflamed.mean <- rowMeans(data[bulk_features[[1]],])
-    	inflamed_top100 <- bulk_features[[1]][order(inflamed.mean, decreasing = T)][1:100]
+    	inflamed.mean <- Matrix::rowMeans(data[bulk_features[[1]],])
+    	inflamed_top100 <- head(bulk_features[[1]][order(inflamed.mean, decreasing = T)], n=100)
     }
 
     if (length(bulk_features[[2]]) == 0) {
 	warn("No overlapped cold gene signature found")
 	cold_top100 <- c()
     } else {
-    	cold.mean <- rowMeans(data[bulk_features[[2]],])
-    	cold_top100 <- bulk_features[[2]][order(cold.mean, decreasing = T)][1:100]
+    	cold.mean <- Matrix::rowMeans(data[bulk_features[[2]],])
+    	cold_top100 <- head(bulk_features[[2]][order(cold.mean, decreasing = T)][1:100], n=100)
     }
     IBRIDGE_features<-list(inflamed=inflamed_top100, cold=cold_top100)
     return(IBRIDGE_features)
