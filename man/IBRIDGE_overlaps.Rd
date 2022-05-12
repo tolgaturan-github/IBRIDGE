@@ -6,7 +6,7 @@
 Integrates bulk with single-cell (or cell line) gene expression data and identifies features that can classfy cells into "inflamed" and "cold" bins.}
 \usage{
 IBRIDGE_overlaps(
-  seurat_object,
+  seu1,
   type = "ens",
   cohort = c("ACC", "BLCA", "CESC", "CHOL", "COAD", "ESCA", "GBM", "HNSC", "KICH",
     "KIRC", "KIRP", "LGG", "LIHC", "LUAD", "LUSC", "MESO", "OV", "PAAD", "PRAD", "READ",
@@ -15,13 +15,13 @@ IBRIDGE_overlaps(
 )
 }
 \arguments{
-\item{seurat_object}{Output of UMI count matrix normalized by Seurat workflows.}
-
 \item{type}{type of gene identifier the dataset has. "ens" for ensembl IDs and "gene" for HUGO gene exymbols. Defaults to "ens"}
 
 \item{cohort}{one of 28 solid tumor cohorts from TCGA database. The cancer cohort from which the single-cell gene expression dataset is generated.}
 
 \item{norm_method}{"SCTransform" or "NormalizeData". Defaults to "SCTransform"}
+
+\item{seurat_object}{Output of UMI count matrix normalized by Seurat workflows.}
 }
 \value{
 list of 2 elements. One for "inflamed" and one for "cold" features.

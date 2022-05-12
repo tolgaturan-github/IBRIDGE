@@ -6,21 +6,21 @@
 Classifies the input single-cell or in vitro cell line data into "inflamed", "cold" or "unassigned" bins}
 \usage{
 Classify_cells(
-  seurat_object,
+  seu1,
   IBRIDGE_features,
   norm_method = "SCTransform",
   n_cores = 1
 )
 }
 \arguments{
-\item{seurat_object}{Output of UMI count matrix normalized by Seurat workflows}
-
 \item{IBRIDGE_features}{Output of IBRIDGE_overlaps function.}
 
 \item{norm_method}{"SCTransform" or "NormalizeData". Defaults to "SCTransform"}
 
 \item{n_cores}{Integer of length 1. Specifies the number of parallel cores running the function.
 Defaults to 1}
+
+\item{seurat_object}{Output of UMI count matrix normalized by Seurat workflows}
 }
 \value{
 A seurat_object with metadata updated with IBRIDGE classification

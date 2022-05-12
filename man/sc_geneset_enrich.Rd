@@ -5,16 +5,9 @@
 \title{Geneset Enrichment (GSE) on scRNAseq Data
 Calculates single cell GSE scores using "AUCell" method}
 \usage{
-sc_geneset_enrich(
-  seurat_object,
-  geneset_list,
-  norm_method = "SCTransform",
-  n_cores = 1
-)
+sc_geneset_enrich(seu1, geneset_list, norm_method = "SCTransform", n_cores = 8)
 }
 \arguments{
-\item{seurat_object}{Output of UMI count matrix normalized by Seurat workflows}
-
 \item{geneset_list}{a List of gene/Transcript features.
 Preferably all or at least 1 feature in each geneset must be present in the rownames of the expression matrix.}
 
@@ -22,6 +15,8 @@ Preferably all or at least 1 feature in each geneset must be present in the rown
 
 \item{n_cores}{Integer of length 1. Specifies the number of parallel cores running the function.
 Defaults to 1}
+
+\item{seurat_object}{Output of UMI count matrix normalized by Seurat workflows}
 }
 \value{
 data.frame holding geneset enrichment values for each geneset (columns) and for each cell (rows).
