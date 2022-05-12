@@ -13,7 +13,7 @@ Quantification of T cell infiltration levels in a tumor tissue, is an important 
 ```{r setup, include=FALSE} 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
-Install IBRIDGE and the packages it depends as follows:
+Install IBRIDGE and the packges it depends as follows:
 ``` {r install_IBRIDGE, echo=TRUE, eval=FALSE}
 library(devtools)
 install.packages("Seurat")
