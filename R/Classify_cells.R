@@ -15,12 +15,11 @@
 
 
 
-Classify_cells<-function(seu1, IBRIDGE_features,norm_method="SCTransform", n_cores=1){
+Classify_cells<-function(seurat_object, IBRIDGE_features,norm_method="SCTransform", n_cores=1){
 
 	nes1<-sc_geneset_enrich(seu1, IBRIDGE_features, norm_method, n_cores)
 	nes_df<-data.frame(nes1[,1:2], Inflamed_tertiles=assign_tertiles(nes1[,1], "Inflamed"), Cold_tertiles=assign_tertiles(nes1[,2], "Cold"))
 	nes_df$Class<-ifelse(nes_df$Inflamed_tertiles=="Inflamed_high"&nes_df$Cold_tertiles!="Cold_high", "Inflamed", ifelse(nes_df$Cold_tertiles=="Cold_high"&nes_df$Inflamed_tertiles!="Inflamed_high", "Cold", "Unassigned"))
 	seu1@meta.data$IBRIDGE_Class<-nes_df$Class
-	return(seu1)
-}
+	seu1}
 

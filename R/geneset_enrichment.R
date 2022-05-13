@@ -17,17 +17,12 @@
 #'
 
 
-sc_geneset_enrich <- function(seu1, geneset_list, norm_method="SCTransform",n_cores=8){
-    if (norm_method=="SCTransform") {
-        cells_rankings <- AUCell_buildRankings(seu1$SCT@data, nCores=n_cores, plotStats=FALSE)
-	}
-    else if(norm_method=="NormalizeData") {
-        cells_rankings <- AUCell_buildRankings(seu1$RNA@data, nCores=n_cores, plotStats=FALSE)
-	} else {
-		stop("Invalid norm_method, please use 'SCTransform' or 'NormalizeData")
-	}
-	
-    cells_AUC <- AUCell_calcAUC(geneset_list, cells_rankings, aucMaxRank=ceiling(0.10 * nrow(cells_rankings)))
-    auc1<-data.frame(t(cells_AUC@assays@data@listData$AUC))
-    return(auc1)
-}
+sc_geneset_enrich<-function(seurat_object, geneset_list, norm_method="SCTransform",n_cores=1){
+	library(AUCell)
+	if (norm_method=="SCTransform"){
+  		cells_rankings <- AUCell_buildRankings(seu1$SCT@data, nCores=n_cores, plotStats=FALSE)}
+	else if(norm_method=="NormalizeData"){
+		cells_rankings <- AUCell_buildRankings(seu1$RNA@data, nCores=n_cores, plotStats=FALSE)}
+	cells_AUC <- AUCell_calcAUC(geneset_list, cells_rankings, aucMaxRank=ceiling(0.10 * nrow(cells_rankings)))
+	auc1<-data.frame(t(cells_AUC@assays@data@listData$AUC))
+	auc1}
