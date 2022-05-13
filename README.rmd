@@ -18,6 +18,7 @@ Install IBRIDGE and the packages it depends as follows:
 library(devtools)
 install.packages("Seurat")
 BiocManager::install("AUCell")
+Sys.setlocale("LC_ALL","en_US.UTF-8")
 install_github("tolgaturan-github/IBRIDGE")
 ```
 
@@ -66,6 +67,7 @@ lapply(IBRIDGE_features, head)
 After identifying the features we can apply geneset enrichment to see which of the cancer cells express inflamed/cold features. Then we can assign an inflamed/cold classification to each of the cells:
 ``` {r identify_cells, results="hide"}
 seu1<-Classify_cells(seu1, IBRIDGE_features, "SCTransform", 100)
+```
 
 ``` {r identify_cells2, echo=TRUE, eval=TRUE}
 table(seu1@meta.data$IBRIDGE_Class)
