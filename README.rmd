@@ -26,20 +26,13 @@ install_github("tolgaturan-github/IBRIDGE")
 As explained in the associated publication, malignant cancer cells are the only subpopulation that clusters by patient group. Therefore, we hypothesize that 'malignant' population can be used to assess T-cell infiltration levels from scRNASeq data by integrating the correlates of T-cell infiltration from the corresponding TCGA cohort. In this vignette, we utilized a Breast Cancer scRNAseq dataset (GSE176078) reported by Wu et al., 2021, to describe the IBRIDGE workflow.
 
   
-Load necessary packages, the geneXcell count matrix and the patient metadata for the malignant subset of this dataset
-``` {r load_data1, echo=FALSE, eval=TRUE}
-load("../../GSE176078_malignant_UMI_countmatrix.rda")
-load("../../GSE176078_malignant_metadata.rda")
-GSE176078_malignant_UMI_countmatrix<-GSE176078_malignant_UMI_countmatrix[order(rownames(GSE176078_malignant_UMI_countmatrix)),]
-```
-
-``` {r load_data2, echo=TRUE, eval=FALSE}
-#Below test data are used to replicate this vignette but are excluded from the package due to space restrictions.
-data("GSE176078_malignant_UMI_countmatrix", "GSE176078_malignant_metadata", package="IBRIDGE")
-```
+Load necessary packages, the geneXcell count matrix and the patient metadata for the malignant subset of this dataset. 
 ``` {r load_data, echo=TRUE, eval=TRUE}
 library(IBRIDGE)
 library(Seurat)
+#Below test data are used to replicate this vignette. Instead of full counts only the matrix with top 3000 variable genes are included in the IBRIDGE package (due to GitHub space restrictions, however, both inputs generated identical results).
+data("GSE176078_malignant_UMI_countmatrix", "GSE176078_malignant_metadata", package="IBRIDGE")
+
 dim(GSE176078_malignant_UMI_countmatrix)
 GSE176078_malignant_UMI_countmatrix[1:6, 1:6]
 table(GSE176078_malignant_metadata$Patient)
