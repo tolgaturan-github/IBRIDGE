@@ -27,10 +27,10 @@ As explained in the associated publication, malignant cancer cells are the only 
 
   
 Load necessary packages, the geneXcell count matrix and the patient metadata for the malignant subset of this dataset. 
+Below test data are used to replicate this vignette. Instead of full counts only the matrix with top 3000 variable genes are included in the IBRIDGE package (due to GitHub space restrictions, however, both inputs generated identical results).
 ``` {r load_data, echo=TRUE, eval=TRUE}
 library(IBRIDGE)
 library(Seurat)
-#Below test data are used to replicate this vignette. Instead of full counts only the matrix with top 3000 variable genes are included in the IBRIDGE package (due to GitHub space restrictions, however, both inputs generated identical results).
 data("GSE176078_malignant_UMI_countmatrix", "GSE176078_malignant_metadata", package="IBRIDGE")
 
 dim(GSE176078_malignant_UMI_countmatrix)

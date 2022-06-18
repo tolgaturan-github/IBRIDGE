@@ -23,46 +23,43 @@ install_github("tolgaturan-github/IBRIDGE")
 
 As explained in the associated publication, malignant cancer cells are the only subpopulation that clusters by patient group. Therefore, we hypothesize that 'malignant' population can be used to assess T-cell infiltration levels from scRNASeq data by integrating the correlates of T-cell infiltration from the corresponding TCGA cohort. In this vignette, we utilized a Breast Cancer scRNAseq dataset (GSE176078) reported by Wu et al., 2021, to describe the IBRIDGE workflow.
 
-Load necessary packages, the geneXcell count matrix and the patient metadata for the malignant subset of this dataset
-
-``` {.r}
-#Below test data are used to replicate this vignette but are excluded from the package due to space restrictions.
-data("GSE176078_malignant_UMI_countmatrix", "GSE176078_malignant_metadata", package="IBRIDGE")
-```
+Load necessary packages, the geneXcell count matrix and the patient metadata for the malignant subset of this dataset. Below test data are used to replicate this vignette. Instead of full counts only the matrix with top 3000 variable genes are included in the IBRIDGE package (due to GitHub space restrictions, however, both inputs generated identical results).
 
 ``` {.r}
 library(IBRIDGE)
 library(Seurat)
+data("GSE176078_malignant_UMI_countmatrix", "GSE176078_malignant_metadata", package="IBRIDGE")
+
 dim(GSE176078_malignant_UMI_countmatrix)
 ```
 
-    ## [1] 29733 27915
+    ## [1]  3000 27915
 
 ``` {.r}
 GSE176078_malignant_UMI_countmatrix[1:6, 1:6]
 ```
 
-    ##          CID3586_TTCTCCTTCTGAAAGA CID3586_AACCATGGTTCAGGCC
-    ## A1BG                            0                        0
-    ## A1BG-AS1                        0                        0
-    ## A1CF                            0                        0
-    ## A2M                             0                        3
-    ## A2M-AS1                         0                        0
-    ## A2ML1                           0                        0
-    ##          CID3586_AACCGCGAGCGATGAC CID3586_AAGGAGCCATCTGGTA
-    ## A1BG                            0                        0
-    ## A1BG-AS1                        0                        1
-    ## A1CF                            0                        0
-    ## A2M                             0                        4
-    ## A2M-AS1                         0                        0
-    ## A2ML1                           0                        0
-    ##          CID3586_AAGGCAGAGATCCGAG CID3586_AAGTCTGAGCCAACAG
-    ## A1BG                            0                        0
-    ## A1BG-AS1                        1                        0
-    ## A1CF                            0                        0
-    ## A2M                             2                        0
-    ## A2M-AS1                         0                        0
-    ## A2ML1                           0                        0
+    ##        CID3586_TTCTCCTTCTGAAAGA CID3586_AACCATGGTTCAGGCC
+    ## A2M                           0                        3
+    ## AAMDC                         0                        0
+    ## AARD                          0                        0
+    ## ABCA12                        0                        0
+    ## ABCB1                         0                        0
+    ## ABCC11                        0                        0
+    ##        CID3586_AACCGCGAGCGATGAC CID3586_AAGGAGCCATCTGGTA
+    ## A2M                           0                        4
+    ## AAMDC                         0                        0
+    ## AARD                          0                        0
+    ## ABCA12                        0                        0
+    ## ABCB1                         0                        0
+    ## ABCC11                        0                        0
+    ##        CID3586_AAGGCAGAGATCCGAG CID3586_AAGTCTGAGCCAACAG
+    ## A2M                           2                        0
+    ## AAMDC                         1                        0
+    ## AARD                          0                        0
+    ## ABCA12                        0                        0
+    ## ABCB1                         0                        0
+    ## ABCC11                        0                        0
 
 ``` {.r}
 table(GSE176078_malignant_metadata$Patient)
@@ -100,7 +97,7 @@ lapply(IBRIDGE_features, head)
 ```
 
     ## $inflamed
-    ## [1] "B2M"    "HLA-C"  "HLA-A"  "HLA-B"  "MUCL1"  "CALML5"
+    ## [1] "B2M"    "HLA-C"  "HLA-B"  "HLA-A"  "MUCL1"  "CALML5"
     ## 
     ## $cold
     ## [1] "NEAT1"   "COX6C"   "AZGP1"   "AGR2"    "PIP"     "SLC39A6"
@@ -117,7 +114,7 @@ table(seu1@meta.data$IBRIDGE_Class)
 
     ## 
     ##       Cold   Inflamed Unassigned 
-    ##       8592       8592      10731
+    ##       8633       8634      10648
 
 We can then visualize these classes on the UMAP dimensions:
 
