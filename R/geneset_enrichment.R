@@ -20,9 +20,9 @@
 sc_geneset_enrich<-function(seu1, geneset_list, norm_method="SCTransform",n_cores=1){
 	library(AUCell)
 	if (norm_method=="SCTransform"){
-  		cells_rankings <- AUCell_buildRankings(seu1$SCT@data, nCores=n_cores, plotStats=FALSE)}
+  		cells_rankings <- AUCell_buildRankings(seu1$SCT@data, BPPARAM=BiocParallel::MulticoreParam(n_cores), plotStats=FALSE, splitByBlocks=TRUE)}
 	else if(norm_method=="NormalizeData"){
-		cells_rankings <- AUCell_buildRankings(seu1$RNA@data, nCores=n_cores, plotStats=FALSE)} 
+		cells_rankings <- AUCell_buildRankings(seu1$RNA@data, BPPARAM=BiocParallel::MulticoreParam(n_cores), plotStats=FALSE, splitByBlocks=TRUE)} 
 else {
                 stop("Invalid norm_method, please use 'SCTransform' or 'NormalizeData")
         }
