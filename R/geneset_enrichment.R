@@ -29,5 +29,5 @@ else {
 
 
 	cells_AUC <- AUCell_calcAUC(geneset_list, cells_rankings, aucMaxRank=ceiling(0.10 * nrow(cells_rankings)))
-	auc1<-data.frame(t(cells_AUC@assays@data@listData$AUC))
+	auc1 <- data.frame(t(cells_AUC@assays@data@listData$AUC))
 	auc1}
