@@ -2,7 +2,7 @@
 title: "IBRIDGE integrates bulk and single-cell datasets to profile granular heterogeneity of TIME"
 author: "Tolga Turan"
 date: "February 1, 2022"
-output: github_document
+output: html_document
 ---
 
 ##INTRODUCTION:
@@ -17,7 +17,7 @@ Install IBRIDGE and the packages it depends as follows:
 ``` {r install_IBRIDGE, echo=TRUE, eval=FALSE}
 library(devtools)
 install.packages("Seurat")
-BiocManager::install("AUCell")
+BiocManager::install("AUCell", "BiocParallel")
 Sys.setlocale("LC_ALL","en_US.UTF-8")
 install_github("tolgaturan-github/IBRIDGE")
 ```

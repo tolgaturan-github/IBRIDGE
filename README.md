@@ -14,7 +14,7 @@ Install IBRIDGE and the packages it depends as follows:
 ``` {.r}
 library(devtools)
 install.packages("Seurat")
-BiocManager::install("AUCell")
+BiocManager::install("AUCell", "BiocParallel")
 Sys.setlocale("LC_ALL","en_US.UTF-8")
 install_github("tolgaturan-github/IBRIDGE")
 ```
@@ -114,7 +114,7 @@ table(seu1@meta.data$IBRIDGE_Class)
 
     ## 
     ##       Cold   Inflamed Unassigned 
-    ##       8633       8634      10648
+    ##       8626       8624      10665
 
 We can then visualize these classes on the UMAP dimensions:
 
