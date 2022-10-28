@@ -2,7 +2,9 @@
 title: "iBRIDGE integrates bulk and single-cell datasets to profile granular heterogeneity of TIME"
 author: "Tolga Turan"
 date: "February 1, 2022"
-output: html_document
+output:
+  html_document:
+    keep_md: true
 ---
 
 ##INTRODUCTION:
@@ -78,12 +80,12 @@ Average per-patient iBRIDGE scores can be used to quantify immune-infiltration l
 cell_metadata<-data.frame(Patient=seu1@meta.data$Patient,iBRIDGE_Score=seu1@meta.data$iBRIDGE_Score, iBRIDGE_Class=seu1@meta.data$iBRIDGE_Class)
 cell_metadata<-cell_metadata[!is.infinite(cell_metadata$iBRIDGE_Score),]
 patient_metadata<-data.frame(Patient=levels(factor(cell_metadata$Patient)), ave_iBRIDGE_Score=sapply(split(cell_metadata$iBRIDGE_Score, cell_metadata$Patient), mean))
-patient_metadata[order(patient_metadata$ave_iBRIDGE_Score), ]
+patient_metadata[order(patient_metadata$ave_iBRIDGE_Score),2, drop=FALSE ]
 ```
 
-Further visiualization of per-cell scoress and classes asa boxplot:
+Further visualization of per-cell scoress and classes asa boxplot:
 ``` {r Visualize_iBRIDGE_scores, fig.width=8, fig.height=6, echo=TRUE, eval=TRUE}
-ggplot(cell_metadata,aes(x=iBRIDGE_Class, y=iBRIDGE_Score, fill=iBRIDGE_Class)) +scale_fill_manual(values=c("blue", "red", "gray"))
+ggplot(cell_metadata,aes(x=iBRIDGE_Class, y=iBRIDGE_Score, fill=iBRIDGE_Class))+geom_boxplot(outlier.shape=NA)+scale_fill_manual(values=c("blue", "red", "gray"))+scale_y_continuous(limits = c(0, 12))
 ```
 
 
@@ -91,6 +93,7 @@ ggplot(cell_metadata,aes(x=iBRIDGE_Class, y=iBRIDGE_Score, fill=iBRIDGE_Class)) 
 References:
 
 Wu SZ, Al-Eryani G, et al. **A single-cell and spatially resolved atlas of human breast cancers.** _Nat Genet. 2021 Sep;53(9):1334-1347._
+
 Turan T, Kongpachith S, Halliwill K, et al. **A Novel Data Integration Method Identifies Inflamed Tumors from Single-Cell RNAseq Data and Differentiates Cell Type Specific Markers of Immune cell Infiltration** _Under Peer-Review_ 
 
 
