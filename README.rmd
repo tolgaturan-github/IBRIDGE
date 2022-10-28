@@ -1,20 +1,20 @@
 ---
-title: "IBRIDGE integrates bulk and single-cell datasets to profile granular heterogeneity of TIME"
+title: "iBRIDGE integrates bulk and single-cell datasets to profile granular heterogeneity of TIME"
 author: "Tolga Turan"
 date: "February 1, 2022"
 output: html_document
 ---
 
 ##INTRODUCTION:
-Quantification of T cell infiltration levels in a tumor tissue, is an important component of Immuno-Oncology research. In bulk gene expression datasets, this can be approximated by using "Gene Set Enrichment" or "Cell Type Deconvolution" methods (with gene signatures such as ICR, TIS or IFNG, etc. ). However, reaching the same goal is not straigthforward in single-cell RNAseq datasets. Here, we report a novel method "IBRIDGE" that can integrate and *bridge* between bulk and single-cell gene expression data types to quantify T cell infiltration levels and classify the patients as "inflamed", "cold" or "unassigned/intermediate".
+Quantification of T cell infiltration levels in a tumor tissue, is an important component of Immuno-Oncology research. In bulk gene expression datasets, this can be approximated by using "Gene Set Enrichment" or "Cell Type Deconvolution" methods (with gene signatures such as ICR, TIS or IFNG, etc. ). However, reaching the same goal is not straigthforward in single-cell RNAseq datasets. Here, we report a novel method "iBRIDGE" that can integrate and *bridge* between bulk and single-cell gene expression data types to quantify T cell infiltration levels and classify the patients as "inflamed", "cold" or "unassigned/intermediate".
 
 
 ##INSTALLATION:
 ```{r setup, include=FALSE} 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
-Install IBRIDGE and the packages it depends as follows:
-``` {r install_IBRIDGE, echo=TRUE, eval=FALSE}
+Install iBRIDGE and the packages it depends as follows:
+``` {r install_iBRIDGE, echo=TRUE, eval=FALSE}
 library(devtools)
 install.packages("Seurat")
 BiocManager::install("AUCell", "BiocParallel")
@@ -23,11 +23,11 @@ install_github("tolgaturan-github/IBRIDGE")
 ```
 
 ##USAGE:
-As explained in the associated publication, malignant cancer cells are the only subpopulation that clusters by patient group. Therefore, we hypothesize that 'malignant' population can be used to assess T-cell infiltration levels from scRNASeq data by integrating the correlates of T-cell infiltration from the corresponding TCGA cohort. In this vignette, we utilized a Breast Cancer scRNAseq dataset (GSE176078) reported by Wu et al., 2021, to describe the IBRIDGE workflow.
+As explained in the associated publication, malignant cancer cells are the only subpopulation that clusters by patient group. Therefore, we hypothesize that 'malignant' population can be used to assess T-cell infiltration levels from scRNASeq data by integrating the correlates of T-cell infiltration from the corresponding TCGA cohort. In this vignette, we utilized a Breast Cancer scRNAseq dataset (GSE176078) reported by Wu et al., 2021, to describe the iBRIDGE workflow.
 
   
 Load necessary packages, the geneXcell count matrix and the patient metadata for the malignant subset of this dataset. 
-Below test data are used to replicate this vignette. Instead of full counts only the matrix with top 3000 variable genes are included in the IBRIDGE package (due to GitHub space restrictions, however, both inputs generated identical results).
+Below test data are used to replicate this vignette. Instead of full counts only the matrix with top 3000 variable genes are included in the iBRIDGE package (due to GitHub space restrictions, however, both inputs generated identical results).
 ``` {r load_data, echo=TRUE, eval=TRUE}
 library(IBRIDGE)
 library(Seurat)
@@ -51,27 +51,29 @@ library(RColorBrewer)
 DimPlot(seu1, group.by="Patient", size=0.5)+scale_colour_manual(values=c(brewer.pal(9, "Set1"), brewer.pal(8, "Dark2"), brewer.pal(5, "Set2")))
 ```
 
-Now, let's identify IBRIDGE overlaps between single-cell and bulk expression data. Since this is a BRCA dataset, we pull TCGA features that correlate with inflamed and cold TCGA-BRCA samples. Then we can identify top highly variable genes form the single-cell data:
+Now, let's identify iBRIDGE overlaps between single-cell and bulk expression data. Since this is a BRCA dataset, we pull TCGA features that correlate with inflamed and cold TCGA-BRCA samples. Then we can identify top highly variable genes form the single-cell data:
 ``` {r identify_overlaps, echo=TRUE, eval=TRUE}
-IBRIDGE_features<-IBRIDGE_overlaps(seu1, "gene", "BRCA", "SCTransform")
-lapply(IBRIDGE_features, head)
+iBRIDGE_features<-IBRIDGE_overlaps(seu1, "gene", "BRCA", "SCTransform")
+lapply(iBRIDGE_features, head)
 ```
 
 After identifying the features we can apply geneset enrichment to see which of the cancer cells express inflamed/cold features. Then we can assign an inflamed/cold classification to each of the cells:
 ``` {r identify_cells, results="hide"}
-seu1<-Classify_cells(seu1, IBRIDGE_features, "SCTransform", 100)
+seu1<-Classify_cells(seu1, iBRIDGE_features, "SCTransform", 100)
 ```
 
 ``` {r identify_cells2, echo=TRUE, eval=TRUE}
-table(seu1@meta.data$IBRIDGE_Class)
+table(seu1@meta.data$iBRIDGE_Class)
 ```
 
 We can then visualize these classes on the UMAP dimensions:
 ``` {r Visualize_classes, fig.width=8, fig.height=6, echo=TRUE, eval=TRUE}
 library(ggplot2)
-DimPlot(seu1, group.by="IBRIDGE_Class", size=0.5)+scale_colour_manual(values=c("blue", "red", "gray"))
+DimPlot(seu1, group.by="iBRIDGE_Class", size=0.5)+scale_colour_manual(values=c("blue", "red", "gray"))
 ```
 
+Average per-patient iBRIDGE scores can be used to quantify immune-infiltration levels. 
+sort(sapply(split(seu1@meta.data$iBRIDGE_Score, seu1@meta.data$Patient), mean)) 
 
 References:
 
