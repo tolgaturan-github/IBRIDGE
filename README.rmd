@@ -72,9 +72,10 @@ library(ggplot2)
 DimPlot(seu1, group.by="iBRIDGE_Class", size=0.5)+scale_colour_manual(values=c("blue", "red", "gray"))
 ```
 
-Average per-patient iBRIDGE scores can be used to quantify immune-infiltration levels. 
+Average per-patient iBRIDGE scores can be used to quantify immune-infiltration levels.   
+``` {r average_iBRIDGE_scores, echo=TRUE, eval=TRUE}
 sort(sapply(split(seu1@meta.data$iBRIDGE_Score, seu1@meta.data$Patient), mean)) 
-
+```
 References:
 
 Wu SZ, Al-Eryani G, et al. **A single-cell and spatially resolved atlas of human breast cancers.** _Nat Genet. 2021 Sep;53(9):1334-1347._
