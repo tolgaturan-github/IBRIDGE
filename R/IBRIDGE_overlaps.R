@@ -53,8 +53,8 @@ IBRIDGE_overlaps<-function(seu1, type="ens", cohort=c("ACC", "BLCA", "CESC", "CH
     	cold.mean <- Matrix::rowMeans(data[bulk_features[[2]],])
     	cold_top100 <- head(bulk_features[[2]][order(cold.mean, decreasing = T)][1:100], n=100)
     }
-    IBRIDGE_features<-list(inflamed=inflamed_top100, cold=cold_top100)
-    return(IBRIDGE_features)
+    iBRIDGE_features<-list(inflamed=inflamed_top100, cold=cold_top100)
+    return(iBRIDGE_features)
 }
 
 
