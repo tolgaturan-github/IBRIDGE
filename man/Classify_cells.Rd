@@ -7,7 +7,7 @@ Classifies the input single-cell or in vitro cell line data into "inflamed", "co
 \usage{
 Classify_cells(
   seu1,
-  IBRIDGE_features,
+  iBRIDGE_features,
   norm_method = "SCTransform",
   n_cores = 1
 )
@@ -15,7 +15,7 @@ Classify_cells(
 \arguments{
 \item{seu1}{Output of UMI count matrix normalized by Seurat workflows}
 
-\item{IBRIDGE_features}{Output of IBRIDGE_overlaps function.}
+\item{iBRIDGE_features}{Output of IBRIDGE_overlaps function.}
 
 \item{norm_method}{"SCTransform" or "NormalizeData". Defaults to "SCTransform"}
 
@@ -23,14 +23,14 @@ Classify_cells(
 Defaults to 1}
 }
 \value{
-A seurat_object with metadata updated with IBRIDGE classification
+A seurat_object with metadata updated with iBRIDGE classification
 }
 \description{
 Classify single-cells or in vitro cell lines
 Classifies the input single-cell or in vitro cell line data into "inflamed", "cold" or "unassigned" bins
 }
 \examples{
-seu1<-Classify_cells(seu1, IBRIDGE_feautures, "SCTransform", 100)
+seu1<-Classify_cells(seu1, iBRIDGE_feautures, "SCTransform", 100)
 }
 \references{
 \url{http://github.com/tolgaturan-github/IBRIDGE}
