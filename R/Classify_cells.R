@@ -21,5 +21,6 @@ Classify_cells<-function(seu1, IBRIDGE_features,norm_method="SCTransform", n_cor
 	nes_df<-data.frame(nes1[,1:2], Inflamed_tertiles=assign_tertiles(nes1[,1], "Inflamed"), Cold_tertiles=assign_tertiles(nes1[,2], "Cold"))
 	nes_df$Class<-ifelse(nes_df$Inflamed_tertiles=="Inflamed_high"&nes_df$Cold_tertiles!="Cold_high", "Inflamed", ifelse(nes_df$Cold_tertiles=="Cold_high"&nes_df$Inflamed_tertiles!="Inflamed_high", "Cold", "Unassigned"))
 	seu1@meta.data$IBRIDGE_Class<-nes_df$Class
+	seu1@meta.data$iBRIDGE_Score<-nes1[,1]/nes1[,2]
 	seu1}
 
