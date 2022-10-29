@@ -2,7 +2,9 @@
 title: "iBRIDGE integrates bulk and single-cell datasets to profile granular heterogeneity of TIME"
 author: "Tolga Turan"
 date: "February 1, 2022"
-output: github_document
+output: 
+  github_document:
+    html_preview: FALSE
 ---
 
 ##INTRODUCTION:
