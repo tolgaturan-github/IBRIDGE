@@ -134,29 +134,29 @@ patient_metadata<-data.frame(Patient=levels(factor(cell_metadata$Patient)), ave_
 patient_metadata[order(patient_metadata$ave_iBRIDGE_Score),2, drop=FALSE ]
 ```
 
-    ##          ave_iBRIDGE_Score
-    ## CID4067          0.2844366
-    ## CID4290A         0.3190990
-    ## CID4463          0.3359717
-    ## CID3941          0.3426980
-    ## CID4535          0.3503089
-    ## CID3948          0.3997413
-    ## CID4461          0.7474839
-    ## CID4530N         0.9168359
-    ## CID44041         1.1634709
-    ## CID45171         1.8677005
-    ## CID4471          1.8999504
-    ## CID44991         1.9804435
-    ## CID4066          2.0354404
-    ## CID3921          2.4829418
-    ## CID4465          2.5587411
-    ## CID44971         3.0594636
-    ## CID4523          4.1963778
-    ## CID4513          5.1243847
-    ## CID4495          5.3834998
-    ## CID4515          6.2507787
-    ## CID3586          6.4514996
-    ## CID3963          8.0389367
+    ##          ave_iBRIDGE_Score   absolute_classification
+    ## CID4067          0.2844366   below_threshold
+    ## CID4290A         0.3190990   below_threshold
+    ## CID4463          0.3359717   below_threshold
+    ## CID3941          0.3426980   below_threshold
+    ## CID4535          0.3503089   below_threshold
+    ## CID3948          0.3997413   below_threshold
+    ## CID4461          0.7474839   below_threshold
+    ## CID4530N         0.9168359   below_threshold
+    ## CID44041         1.1634709   below_threshold
+    ## CID45171         1.8677005   above_threshold
+    ## CID4471          1.8999504   above_threshold
+    ## CID44991         1.9804435   above_threshold
+    ## CID4066          2.0354404   above_threshold
+    ## CID3921          2.4829418   above_threshold
+    ## CID4465          2.5587411   above_threshold
+    ## CID44971         3.0594636   above_threshold
+    ## CID4523          4.1963778   above_threshold
+    ## CID4513          5.1243847   above_threshold
+    ## CID4495          5.3834998   above_threshold
+    ## CID4515          6.2507787   above_threshold
+    ## CID3586          6.4514996   above_threshold
+    ## CID3963          8.0389367   above_threshold
 
 Further visualization of per-cell scoress and classes asa boxplot:
 
