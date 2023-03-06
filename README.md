@@ -14,7 +14,7 @@ Install iBRIDGE and the packages it depends as follows:
 ``` {.r}
 library(devtools)
 install.packages("Seurat")
-BiocManager::install("AUCell", "BiocParallel")
+BiocManager::install(c("AUCell", "BiocParallel"))
 Sys.setlocale("LC_ALL","en_US.UTF-8")
 install_github("tolgaturan-github/IBRIDGE")
 ```
