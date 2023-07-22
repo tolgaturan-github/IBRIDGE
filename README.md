@@ -170,4 +170,5 @@ References:
 
 Wu SZ, Al-Eryani G, et al. **A single-cell and spatially resolved atlas of human breast cancers.** *Nat Genet. 2021 Sep;53(9):1334-1347.*
 
-Turan T, Kongpachith S, Halliwill K, et al. **A Novel Data Integration Method Identifies Inflamed Tumors from Single-Cell RNAseq Data and Differentiates Cell Type Specific Markers of Immune cell Infiltration** *Under Peer-Review*
+Turan T, Kongpachith S, Halliwill K, et al. **A Novel Data Integration Method Identifies Inflamed Tumors from Single-Cell RNAseq Data and Differentiates Cell Type Specific Markers of Immune cell Infiltration** *Cancer Immunol Res* 2023 Jun 2;11(6):732-746
+
